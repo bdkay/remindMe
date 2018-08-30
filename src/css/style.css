@@ -32,3 +32,7 @@ h1 {
   float: right;
   padding-left:10px;
 }
+
+.delete-button {
+  cursor: pointer
+}

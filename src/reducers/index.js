@@ -1,10 +1,18 @@
-import { ADD_REMINDER } from '../constants';
+import { ADD_REMINDER, DELETE_REMINDER } from '../constants';
 
 const reminder = (action) => {
   return {
     text: action.text,
     id: Math.random()
   }
+};
+
+const removeById = (state = [], id) => {
+  // Filter out any ids that match our past id, one reminder at a time
+  // id does not match any past ids, therefore we keep it
+  const reminders = state.filter(reminder => reminder.id !== id);
+  console.log('new reduced reminders', reminders);
+  return reminders;
 }
 
 // Reducer: takes state and action, returns new state
@@ -14,6 +22,9 @@ const reminder = (action) => {
      case ADD_REMINDER:
        reminders = [...state, reminder(action)];
        console.log('reminders as state', reminders);
+       return reminders;
+     case DELETE_REMINDER:
+       reminders = removeById(state, action.id);
        return reminders;
      default:
        return state;
