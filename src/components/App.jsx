@@ -17,6 +17,7 @@ class App extends Component {
   }
   
   render(){
+    console.log('this.props', this.props);
     return (
       <div className="App">
         <div className="title">
@@ -47,5 +48,12 @@ class App extends Component {
   function mapDispatchToProps(dispatch){
     return bindActionCreators({addReminder}, dispatch);
   }
+  //mapStateToProps so we can recognize the redux state in this component
+  function mapStateToProps(state){
+    console.log('state as state', state);
+    return {
+      reminders: state
+    }
+  }
   
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
