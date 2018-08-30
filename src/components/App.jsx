@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addReminder, deleteReminder } from '../actions';
+import { addReminder, deleteReminder, clearReminders } from '../actions';
 import moment from 'moment';
 
 class App extends Component {
@@ -76,7 +76,13 @@ class App extends Component {
               >
                 Add Reminder
               </button>
-              <br />
+              <br /><br />
+              <div
+                className="btn btn-danger"
+                onClick={this.props.clearReminders}
+              >
+                Clear Reminders
+              </div>
               <br />
               { this.renderReminders() }
             </div>
@@ -89,7 +95,7 @@ class App extends Component {
   
   // Bind the action creator to the application
   function mapDispatchToProps(dispatch){
-    return bindActionCreators({addReminder, deleteReminder}, dispatch);
+    return bindActionCreators({addReminder, deleteReminder, clearReminders}, dispatch);
   }
   //mapStateToProps so we can recognize the redux state in this component
   function mapStateToProps(state){
