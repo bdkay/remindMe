@@ -1,7 +1,6 @@
 import { ADD_REMINDER } from '../constants';
 
-//Action creator
-export addReminder = (text) => {
+export const addReminder = (text) => {
   const action = {
     type: ADD_REMINDER,
     text: text
