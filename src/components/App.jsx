@@ -12,32 +12,54 @@ class App extends Component {
   }
   
   addReminder(){
-    console.log('this.state', this);
     this.props.addReminder(this.state.text);
   }
   
+  renderReminders(){
+    const { reminders } = this.props;
+    return (
+      <ul className="list-group col-sm-4">
+        {
+          reminders.map(reminder => {
+            return (
+              <li key={reminder.id} className="list-group-item">
+                <div>{reminder.text}</div>
+              </li>
+            )
+          })
+        }
+      </ul>
+    )
+  }
+  
   render(){
-    console.log('this.props', this.props);
     return (
       <div className="App">
-        <div className="title">
-          RemindMe
-        </div>
-        <div className="form-inline">
-          <div className="form-group">
-            <input
-              className="form-control"
-              placeholder="I have to..."
-              onChange={event => this.setState({text: event.target.value})}
-            />
+        <div className="col-md-6 col-md-offset-3">
+          <div className="title">
+            <h1>RemindMe</h1>
           </div>
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={() => this.addReminder()}
-          >
-            Add Reminder
-          </button>
+          <div className="row">
+            <div className="form-inline">
+              <div className="form-group">
+                <input
+                  className="form-control"
+                  placeholder="I have to..."
+                  onChange={event => this.setState({text: event.target.value})}
+                />
+              </div>
+              <button
+                type="button"
+                className="btn btn-success"
+                onClick={() => this.addReminder()}
+              >
+                Add Reminder
+              </button>
+              <br />
+              <br />
+              { this.renderReminders() }
+            </div>
+          </div>
         </div>
       </div>
       )
@@ -50,7 +72,6 @@ class App extends Component {
   }
   //mapStateToProps so we can recognize the redux state in this component
   function mapStateToProps(state){
-    console.log('state as state', state);
     return {
       reminders: state
     }
