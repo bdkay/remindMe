@@ -22,7 +22,7 @@ class App extends Component {
         {
           reminders.map(reminder => {
             return (
-              <li key={reminder.id} className="list-group-item">
+              <li key={reminder.id} className="list-group-item list-item">
                 <div>{reminder.text}</div>
               </li>
             )
