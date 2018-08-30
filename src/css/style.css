@@ -23,3 +23,12 @@ h1 {
 .row {
   text-align: center;
 }
+
+.list-item {
+  display: inline-block;
+}
+
+.delete {
+  float: right;
+  padding-left:10px;
+}
